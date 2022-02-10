@@ -1,0 +1,46 @@
+??:??:?? **** Build of configuration Debug for project Exercise2_MC2 ****
+make all 
+Building file: ../MC2.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"MC2.d" -MT"MC2.o" -c -o "MC2.o" "../MC2.c"
+In file included from ../MC2.c:12:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../MC2.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building file: ../uart.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"uart.d" -MT"uart.o" -c -o "uart.o" "../uart.c"
+Finished building: ../uart.c
+ 
+Building target: Exercise2_MC2.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Exercise2_MC2.map -mmcu=atmega16 -o "Exercise2_MC2.elf"  ./MC2.o ./gpio.o ./uart.o   
+Finished building target: Exercise2_MC2.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Exercise2_MC2.elf  >"Exercise2_MC2.lss"
+Finished building: Exercise2_MC2.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 Exercise2_MC2.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    5688 bytes (34.7% Full)
+(.text + .data + .bootloader)
+
+Data:         16 bytes (1.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+??:??:?? Build Finished. 0 errors, 1 warnings. (took 2s.69ms)
+

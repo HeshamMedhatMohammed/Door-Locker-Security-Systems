@@ -1,0 +1,76 @@
+/*
+ ================================================================================================
+ Name        : door_locker_sequrity_system.c
+ Author      : Hesham Medhat
+ Description : Interface with the user
+ Date        : 3/11/2021
+ ================================================================================================
+ */
+
+#define F_CPU 8000000
+#include "util/delay.h"
+#include "uart.h"
+#include "keypad.h"
+#include "lcd.h"
+#include "timer0.h"
+#define PASSWORD_LENGTH 5
+//uint8 g_password0;
+//uint8 g_password1;
+uint8 g_password0[PASSWORD_LENGTH];
+uint8 g_password1[PASSWORD_LENGTH];
+void APP_generatePassword(void)
+{
+	uint8 a_counter;
+	uint8 a_check = 0;
+	LCD_displayStringRowColumn(0,0,"PLZ Enter Pass");
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		g_password0[a_counter] = KEYPAD_getPressedKey();
+		LCD_displayStringRowColumn(1,a_counter,"*");
+		//UART_sendByte(g_password0);
+		_delay_ms(500);
+	}
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"PLZ ReEnter Pass");
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		g_password1[a_counter] = KEYPAD_getPressedKey();
+		LCD_displayStringRowColumn(1,a_counter,"*");
+		//UART_sendByte(g_password0);
+		_delay_ms(500);
+	}
+
+	/*for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+		{
+		 	 UART_sendByte(g_password0[a_counter]);
+		}
+		for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+		{
+			UART_sendByte(g_password1[a_counter]);
+		}
+
+	a_check = UART_recieveByte();
+	if (a_check == 1)
+	{
+		LCD_clearScreen();
+		LCD_displayStringRowColumn(0,0,"Matched");
+	}
+	else if (a_check == 2)
+	{
+		APP_generatePassword();
+	}*/
+}
+
+
+int main(void)
+{
+	LCD_init();
+	//Uart_ConfigType Uart_Config = {_8_BIT,DISABLE,_1_BIT,9600};
+	/* Initialize the UART driver with Baud-rate = 9600 bits/sec */
+	//UART_init(&Uart_Config);
+
+	while(1)
+	{
+		APP_generatePassword();
+	}
+}

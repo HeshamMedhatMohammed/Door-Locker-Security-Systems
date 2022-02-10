@@ -1,0 +1,205 @@
+/*
+ ================================================================================================
+ Name        : door_locker_sequrity_system.c
+ Author      : Hesham Medhat
+ Description : Interface with the user
+ Date        : 3/11/2021
+ ================================================================================================
+ */
+
+#define F_CPU 8000000
+#include "util/delay.h"
+#include <avr/io.h> /* To use the SREG register */
+#include "uart.h"
+#include "keypad.h"
+#include "lcd.h"
+#include "timer0.h"
+
+#define PASSWORD_LENGTH 5
+#define TRIES_LIMIT 3
+#define MATCHED 0
+#define UNMATCHED 1
+#define MISMATCHES_LIMIT 2
+#define OPEN_DOOR 10
+#define BUZZER_LOUD 11
+#define CHANGE_PASSWORD 12
+
+uint8 g_password0[PASSWORD_LENGTH];
+uint8 g_password1[PASSWORD_LENGTH];
+volatile uint8 g_incrementer = 0;
+
+void APP_counting(void)
+{
+	g_incrementer++;
+}
+
+void APP_generatePassword(void)
+{
+	uint8 a_counter;
+	uint8 a_check;
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"PLZ Enter Pass");
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		g_password0[a_counter] = KEYPAD_getPressedKey();
+		LCD_displayStringRowColumn(1,a_counter,"*");
+		_delay_ms(200);
+	}
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"PLZ ReEnter Pass");
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		g_password1[a_counter] = KEYPAD_getPressedKey();
+		LCD_displayStringRowColumn(1,a_counter,"*");
+		_delay_ms(200);
+	}
+
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+		{
+		 	 UART_sendByte(g_password0[a_counter]);
+		}
+		for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+		{
+			UART_sendByte(g_password1[a_counter]);
+		}
+
+	a_check = UART_recieveByte();
+	if (a_check == MATCHED)
+	{
+		return;
+	}
+	else if (a_check == UNMATCHED)
+	{
+		APP_generatePassword();
+	}
+}
+
+uint8 APP_checkPassword(void)
+{
+	uint8 a_counter;
+	uint8 a_check ;
+	uint8 a_returnCase;
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"Enter Pass");
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		g_password0[a_counter] = KEYPAD_getPressedKey();
+		LCD_displayStringRowColumn(1,a_counter,"*");
+		_delay_ms(200);
+	}
+	for (a_counter=0; a_counter < PASSWORD_LENGTH; a_counter++)
+	{
+		UART_sendByte(g_password0[a_counter]);
+	}
+	a_check = UART_recieveByte();
+	if (a_check == MATCHED)
+	{
+		return MATCHED;
+	}
+	else if (a_check == UNMATCHED)
+	{
+		a_returnCase = APP_checkPassword();
+		return a_returnCase;
+	}
+	else if (a_check == MISMATCHES_LIMIT)
+	{
+		return MISMATCHES_LIMIT;
+	}
+}
+
+void APP_openDoor(void)
+{
+	Timer0_ConfigType Timer0_Config = {COMPARE,0x00,0xFF,F_CPU_1024};
+
+	Timer0_init(&Timer0_Config);
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"Unlocking door");
+	while (g_incrementer < 458){}
+	g_incrementer = 0;
+	Timer0_DeInit();
+
+	Timer0_init(&Timer0_Config);
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"Door is unlocked");
+	while (g_incrementer < 92){}
+	g_incrementer = 0;
+	Timer0_DeInit();
+
+	Timer0_init(&Timer0_Config);
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"locking door");
+	while (g_incrementer < 458){}
+	g_incrementer = 0;
+	Timer0_DeInit();
+}
+
+void APP_buzzerON(void)
+{
+	Timer0_ConfigType Timer0_Config = {NORMAL,0x00,0xFF,F_CPU_1024};
+
+	Timer0_init(&Timer0_Config);
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"ERROR MESSAGE");
+	while (g_incrementer < 1832){}
+	g_incrementer = 0;
+	Timer0_DeInit();
+}
+
+void APP_options(void)
+{
+	uint8 a_choice;
+	uint8 a_passwordCase;
+	LCD_clearScreen();
+	LCD_displayStringRowColumn(0,0,"+:Open door");
+	LCD_displayStringRowColumn(1,0,"-:Change pass");
+	a_choice = KEYPAD_getPressedKey();
+	_delay_ms(200);
+	if (a_choice == '+')
+	{
+		a_passwordCase = APP_checkPassword();
+		if (a_passwordCase == MATCHED)
+		{
+			UART_sendByte(OPEN_DOOR);
+			APP_openDoor();
+		}
+		else if (a_passwordCase == MISMATCHES_LIMIT)
+		{
+			UART_sendByte(BUZZER_LOUD);
+			APP_buzzerON();
+		}
+	}
+	else if (a_choice == '-')
+	{
+		a_passwordCase = APP_checkPassword();
+		if (a_passwordCase == MATCHED)
+		{
+			UART_sendByte(CHANGE_PASSWORD);
+			APP_generatePassword();
+		}
+		else if (a_passwordCase == MISMATCHES_LIMIT)
+		{
+			UART_sendByte(BUZZER_LOUD);
+			APP_buzzerON();
+		}
+	}
+	else
+	{
+		APP_options();
+	}
+}
+
+int main(void)
+{
+	LCD_init();
+	Uart_ConfigType Uart_Config = {_8_BIT,DISABLE,_1_BIT,9600};
+	/* Initialize the UART driver with Baud-rate = 9600 bits/sec */
+	UART_init(&Uart_Config);
+	/* Enable Global Interrupt I-Bit */
+	SREG |= (1<<7);
+	Timer0_setCallBack(APP_counting);
+	APP_generatePassword();
+	while(1)
+	{
+		APP_options();
+	}
+}

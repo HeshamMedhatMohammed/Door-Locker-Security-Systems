@@ -1,0 +1,34 @@
+??:??:?? **** Incremental Build of configuration Debug for project Temp_Sensor_Example ****
+make all 
+Building file: ../temp_sensor_example.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"temp_sensor_example.d" -MT"temp_sensor_example.o" -c -o "temp_sensor_example.o" "../temp_sensor_example.c"
+Finished building: ../temp_sensor_example.c
+ 
+Building target: Temp_Sensor_Example.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Temp_Sensor_Example.map -mmcu=atmega16 -o "Temp_Sensor_Example.elf"  ./adc.o ./gpio.o ./lcd.o ./lm35_sensor.o ./temp_sensor_example.o   
+Finished building target: Temp_Sensor_Example.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Temp_Sensor_Example.elf  >"Temp_Sensor_Example.lss"
+Finished building: Temp_Sensor_Example.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 Temp_Sensor_Example.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    8706 bytes (53.1% Full)
+(.text + .data + .bootloader)
+
+Data:        276 bytes (27.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+??:??:?? Build Finished. 0 errors, 0 warnings. (took 858ms)
+

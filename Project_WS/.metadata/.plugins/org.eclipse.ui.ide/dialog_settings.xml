@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\Projects\Mini_Project3\Solution\Mini_Project3\Projects_WS\Mini_Project3"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\12.I2C\I2C_Eclipse_WS\EEPROM_I2C_Exercise"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\9.ICU\ICU_Eclipse_WS\Exercise1_Measure_Duty_Cycle"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\10.USART\UART_Eclipse_WS\Exercise2_MC2"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\10.USART\UART_Eclipse_WS\Exercise2_MC1"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\4.Timers\Timers_Eclipse_WS\Exercise3"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\4.Timers\Timers_Eclipse_WS\Exercise2"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\10.USART\UART_Eclipse_WS"/>
+			<item value="C:\Users\tahermedhat\Desktop\eclipse_workspace\New folder"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\6.Motors\Motors_Eclipse_WS\Exercise2"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\8.ADC\ADC_Eclipse_WS\Temp_Sensor_Example"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\9.ICU\ICU_Eclipse_WS\Exercise2_Measure_Signal_Period"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\8.ADC\ADC_Eclipse_WS\Challenge_ADC_Interrupts"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\8.ADC\ADC_Eclipse_WS\Potentiometer_Example"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\7.Keypad and LCD\Keypad_LCD_Eclipse_WS"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\GPIO Driver\GPIO_Driver_Eclipse_WS"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\6.Motors\Motors_Eclipse_WS\Exercise4"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\4.Timers\Timers_Eclipse_WS\Exercise6"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\4.Timers\Timers_Eclipse_WS\Exercise5"/>
+			<item value="D:\Hesham\Training\Mohamed Tarek Embeded Systems\Embeded Course\Main Course\GPIO Driver\GPIO_Driver_Eclipse_WS\GPIO_Exercise"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+	</section>
+</section>

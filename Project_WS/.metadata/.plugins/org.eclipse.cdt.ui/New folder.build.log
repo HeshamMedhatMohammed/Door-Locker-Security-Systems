@@ -1,0 +1,11 @@
+??:??:?? **** Incremental Build of configuration Debug for project New folder ****
+make all 
+Building target: New folder.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,New folder.map -mmcu=atmega16 -o "New folder.elf"  ./adc_updated.o ./fan_control.o ./gpio.o ./lcd.o ./lm35_sensor.o   
+avr-gcc.exe: folder.map: No such file or directory
+make: *** [New folder.elf] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+
+??:??:?? Build Failed. 1 errors, 0 warnings. (took 372ms)
+

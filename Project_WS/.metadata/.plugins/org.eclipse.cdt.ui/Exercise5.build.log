@@ -1,0 +1,36 @@
+??:??:?? **** Build of configuration Debug for project Exercise5 ****
+make all 
+Building file: ../Exercise5.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Exercise5.d" -MT"Exercise5.o" -c -o "Exercise5.o" "../Exercise5.c"
+In file included from ../Exercise5.c:9:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../Exercise5.c
+ 
+Building target: Exercise5.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Exercise5.map -mmcu=atmega16 -o "Exercise5.elf"  ./Exercise5.o   
+Finished building target: Exercise5.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Exercise5.elf  >"Exercise5.lss"
+Finished building: Exercise5.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 Exercise5.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    3310 bytes (20.2% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+??:??:?? Build Finished. 0 errors, 1 warnings. (took 1s.442ms)
+
